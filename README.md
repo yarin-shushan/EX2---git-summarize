@@ -18,8 +18,9 @@ Yarin Shushan (318175411) • Yuval Garzone (206534976) • Lior Davidi (2118985
 ---
 
 ## 📸 Demo
+![screenshot](https://github.com/user-attachments/assets/9f6ba8e4-b432-4ba4-8b98-625871a205c4)
 
-![App Screenshot](./public/screenshot.png)
+
 
 ## ✨ Features
 
