@@ -1,5 +1,8 @@
 # AI News Aggregator
-
+by: yarin shushan(318175411)
+    yuval garzone (206534976)
+    lior davidi (211898515) 
+רשמתי נכון
 A clean, Apple-inspired web application that aggregates trending AI/ML repositories from GitHub and provides AI-powered summaries using OpenAI or Groq APIs.
 
 ## Features
