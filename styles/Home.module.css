@@ -1,0 +1,329 @@
+/*
+ * Home Page Styles - AI News Aggregator
+ * Apple-inspired layout with responsive grid system
+ */
+
+/* Main container for the entire page */
+.main {
+  min-height: 100vh;
+  padding: var(--spacing-xl) 0;
+  background-color: var(--bg-app);
+}
+
+/* Header section with title and settings */
+.header {
+  max-width: 1200px;
+  margin: 0 auto var(--spacing-xl) auto;
+  padding: 0 var(--spacing-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-top: var(--spacing-xs);
+  font-weight: 400;
+}
+
+/* Settings button in header */
+.settingsButton {
+  background-color: var(--bg-card);
+  color: var(--accent);
+  border: 1px solid rgba(0, 122, 255, 0.2);
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: var(--transition);
+  box-shadow: var(--shadow-subtle);
+}
+
+.settingsButton:hover {
+  background-color: var(--accent);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Header Actions Container */
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+/* Refresh Button */
+.refreshButton {
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.refreshButton:hover:not(:disabled) {
+  background-color: #0056CC;
+  transform: translateY(-1px);
+}
+
+.refreshButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.refreshIcon {
+  font-size: 1rem;
+  transition: transform 0.6s ease;
+}
+
+.refreshIcon.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Config Button */
+.configButton {
+  background-color: rgba(0, 122, 255, 0.1);
+  color: var(--accent);
+  border: 2px solid rgba(0, 122, 255, 0.2);
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+}
+
+.configButton:hover {
+  background-color: rgba(0, 122, 255, 0.2);
+  border-color: rgba(0, 122, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+/* 
+ * Repository Grid Layout
+ * Responsive grid that adapts to screen size
+ */
+.repositoryGrid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  
+  /* CSS Grid with auto-fit columns */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-md);
+  
+  /* Ensure grid items stretch to fill available space */
+  align-items: stretch;
+}
+
+/* Loading state for the grid */
+.loadingGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-md);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* Loading skeleton cards */
+.loadingSkeleton {
+  background-color: var(--bg-card);
+  border-radius: var(--radius);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow-subtle);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.skeletonTitle {
+  height: 24px;
+  background-color: #E5E5EA;
+  border-radius: 4px;
+  margin-bottom: var(--spacing-sm);
+}
+
+.skeletonDescription {
+  height: 16px;
+  background-color: #E5E5EA;
+  border-radius: 4px;
+  margin-bottom: var(--spacing-xs);
+}
+
+.skeletonDescription:last-child {
+  width: 70%;
+}
+
+/* Error state styling */
+.errorContainer {
+  max-width: 600px;
+  margin: var(--spacing-xl) auto;
+  padding: var(--spacing-lg);
+  text-align: center;
+  background-color: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-subtle);
+}
+
+.errorTitle {
+  color: #FF3B30; /* Apple red for errors */
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.errorMessage {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.6;
+}
+
+.retryButton {
+  background-color: var(--accent);
+  color: white;
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.retryButton:hover {
+  background-color: #0056CC;
+  transform: translateY(-1px);
+}
+
+/* Empty state when no repositories found */
+.emptyState {
+  max-width: 600px;
+  margin: var(--spacing-xl) auto;
+  padding: var(--spacing-lg);
+  text-align: center;
+  background-color: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-subtle);
+}
+
+.emptyStateIcon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.5;
+}
+
+.emptyStateTitle {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.emptyStateMessage {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/*
+ * Responsive Design
+ * Adapts layout for different screen sizes
+ */
+
+/* Tablet styles */
+@media (max-width: 1024px) {
+  .repositoryGrid,
+  .loadingGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-sm);
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .main {
+    padding: var(--spacing-lg) 0;
+  }
+  
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+  }
+  
+  .headerActions {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .refreshButton {
+    flex: 1;
+    justify-content: center;
+  }
+  
+  .title {
+    font-size: 1.75rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .repositoryGrid,
+  .loadingGrid {
+    grid-template-columns: 1fr;
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .settingsButton {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Small mobile styles */
+@media (max-width: 480px) {
+  .main {
+    padding: var(--spacing-md) 0;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+  }
+  
+  .repositoryGrid,
+  .loadingGrid {
+    gap: var(--spacing-sm);
+  }
+}

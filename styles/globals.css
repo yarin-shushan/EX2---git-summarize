@@ -1,0 +1,204 @@
+/* 
+ * Global Styles for AI News Aggregator
+ * Apple-inspired minimalist design system
+ * Uses system fonts and carefully crafted spacing/colors
+ */
+
+/* CSS Custom Properties (Variables) - Apple Design System Inspired */
+:root {
+  /* Background Colors - Clean and minimal */
+  --bg-app: #F5F5F7;          /* Light gray background - Apple's signature light gray */
+  --bg-card: #FFFFFF;         /* Pure white for cards - maximum contrast */
+  
+  /* Text Colors - Apple's text hierarchy */
+  --text-primary: #1D1D1F;    /* Almost black - primary text color */
+  --text-secondary: #86868B;  /* Apple gray text - secondary information */
+  
+  /* Accent Colors */
+  --accent: #007AFF;          /* Apple Blue - interactive elements */
+  
+  /* Design System Values */
+  --radius: 12px;             /* Consistent border radius */
+  
+  /* Shadows - Subtle depth without being heavy */
+  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.04);   /* Light shadow for cards */
+  --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);   /* Elevated shadow on hover */
+  
+  /* Transitions - Smooth and natural feeling */
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Apple's easing curve */
+  
+  /* Spacing System */
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 48px;
+}
+
+/* 
+ * CSS Reset and Base Styles
+ * Removes browser inconsistencies and sets up clean foundation
+ */
+* {
+  box-sizing: border-box;     /* Consistent box model */
+  margin: 0;                  /* Remove default margins */
+  padding: 0;                 /* Remove default padding */
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  
+  /* Apple System Font Stack - Native OS fonts for crisp rendering */
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', 
+               'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  
+  /* Font Smoothing - Crisp text rendering like Apple devices */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Base text styling */
+  color: var(--text-primary);
+  background-color: var(--bg-app);
+  line-height: 1.6;           /* Comfortable reading line height */
+}
+
+/* 
+ * Typography Scale - Apple-inspired text hierarchy
+ */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;           /* Semi-bold for headings */
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+h1 {
+  font-size: 2.5rem;          /* 40px - Large display text */
+  font-weight: 700;
+  letter-spacing: -0.02em;    /* Tight letter spacing for large text */
+}
+
+h2 {
+  font-size: 2rem;            /* 32px - Section headings */
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: 1.5rem;          /* 24px - Subsection headings */
+}
+
+p {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-sm);
+  font-size: 1rem;            /* 16px - Base text size */
+}
+
+/* 
+ * Interactive Elements - Apple-style buttons and links
+ */
+button {
+  font-family: inherit;       /* Use system font */
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  font-weight: 500;           /* Medium weight for buttons */
+}
+
+/* Primary button style - Apple blue */
+.btn-primary {
+  background-color: var(--accent);
+  color: white;
+  padding: 12px 24px;
+  font-size: 1rem;
+}
+
+.btn-primary:hover {
+  background-color: #0056CC;  /* Darker blue on hover */
+  transform: translateY(-1px); /* Subtle lift effect */
+}
+
+/* Secondary button style - Minimal */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--accent);
+  padding: 12px 24px;
+  border: 1px solid var(--accent);
+}
+
+.btn-secondary:hover {
+  background-color: var(--accent);
+  color: white;
+}
+
+/* 
+ * Form Elements - Clean and minimal
+ */
+input, textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 12px 16px;
+  border: 1px solid #D1D1D6;  /* Light gray border */
+  border-radius: 8px;         /* Slightly smaller radius for inputs */
+  background-color: white;
+  transition: var(--transition);
+  width: 100%;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1); /* Blue focus ring */
+}
+
+/* 
+ * Utility Classes
+ */
+.container {
+  max-width: 1200px;          /* Maximum content width */
+  margin: 0 auto;             /* Center content */
+  padding: 0 var(--spacing-md);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+
+/* 
+ * Loading States - Subtle animations
+ */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.loading {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* 
+ * Responsive Design - Mobile-first approach
+ */
+@media (max-width: 768px) {
+  :root {
+    --spacing-md: 16px;       /* Reduce spacing on mobile */
+    --spacing-lg: 24px;
+  }
+  
+  h1 {
+    font-size: 2rem;          /* Smaller headings on mobile */
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+}

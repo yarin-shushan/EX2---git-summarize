@@ -1,0 +1,408 @@
+/*
+ * NewsCard Component Styles
+ * Apple-inspired card design with hover effects and clean typography
+ */
+
+/* Main card container */
+.card {
+  background-color: var(--bg-card);
+  border-radius: var(--radius);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow-subtle);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  
+  /* Ensure cards stretch to fill grid space */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  
+  /* Prepare for transform animations */
+  transform: translateY(0);
+  will-change: transform, box-shadow;
+}
+
+/* Enhanced hover effect - Apple-style lift with subtle scale */
+.card:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(0, 122, 255, 0.15);
+}
+
+/* Focus state for accessibility */
+.card:focus-within {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+/* Card header with repository name and stars */
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-sm);
+  gap: var(--spacing-sm);
+}
+
+/* Repository name styling */
+.repositoryName {
+  font-size: 1.1rem;
+  font-weight: 600; /* Semi-bold for emphasis */
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.4;
+  
+  /* Handle long repository names gracefully */
+  word-break: break-word;
+  hyphens: auto;
+  
+  /* Emoji spacing */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Star count badge */
+.starCount {
+  background-color: #F2F2F7;
+  color: var(--text-secondary);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.card:hover .starCount {
+  background-color: rgba(0, 122, 255, 0.1);
+  color: var(--accent);
+  transform: scale(1.05);
+}
+
+.starIcon {
+  font-size: 0.8rem;
+  color: #FFD60A;
+  transition: transform 0.2s ease;
+}
+
+.card:hover .starIcon {
+  transform: rotate(15deg) scale(1.1);
+}
+
+/* Repository description */
+.description {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: var(--spacing-md);
+  flex-grow: 1; /* Take up available space */
+  
+  /* 
+   * Text truncation to keep cards uniform height
+   * Limits description to 3 lines using line-clamp
+   */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3; /* Standard property for compatibility */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Card footer with metadata and actions */
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto; /* Push to bottom of card */
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+/* Repository metadata (language, updated date) */
+.metadata {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.language {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.languageColor {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #007AFF; /* Default blue, can be dynamic */
+}
+
+.updatedDate {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+/* 
+ * Summarize button - Apple-style link button
+ * Clean, minimal design that looks clickable
+ */
+.summarizeButton {
+  background-color: transparent;
+  color: var(--accent);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.summarizeButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+.summarizeButton:hover {
+  background-color: rgba(0, 122, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.2);
+}
+
+.summarizeButton:hover::before {
+  left: 100%;
+}
+
+.summarizeButton:active {
+  transform: translateY(-1px);
+}
+
+/* Loading state for summarize button */
+.summarizeButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.summarizeButton:disabled::before {
+  display: none;
+}
+
+.loadingSpinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(0, 122, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--accent);
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 6px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Topics/tags display */
+.topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
+}
+
+.topic {
+  background-color: rgba(0, 122, 255, 0.1);
+  color: var(--accent);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.topic:hover {
+  background-color: rgba(0, 122, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+/* Repository URL link */
+.repositoryLink {
+  color: var(--accent);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.repositoryLink:hover {
+  color: #0056CC;
+  transform: translateY(-1px);
+}
+
+/* Animated underline effect */
+.repositoryLink::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.repositoryLink:hover::after {
+  width: 100%;
+}
+
+.repositoryLink:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/*
+ * Responsive Design for Cards
+ */
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .repositoryLink,
+  .starCount,
+  .starIcon,
+  .topic,
+  .summarizeButton {
+    transition: none;
+  }
+  
+  .card:hover {
+    transform: none;
+  }
+  
+  .summarizeButton:hover {
+    transform: none;
+  }
+  
+  .loadingSpinner {
+    animation: none;
+  }
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .card {
+    padding: var(--spacing-sm);
+  }
+  
+  .repositoryName {
+    font-size: 1rem;
+  }
+  
+  .description {
+    font-size: 0.9rem;
+  }
+  
+  /* Reduce hover effects on touch devices */
+  .card:hover {
+    transform: translateY(-3px) scale(1.01);
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .cardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+  }
+  
+  .starCount {
+    align-self: flex-end;
+  }
+  
+  .cardFooter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+  }
+  
+  .summarizeButton {
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    background-color: rgba(0, 122, 255, 0.05);
+    border: 1px solid rgba(0, 122, 255, 0.2);
+  }
+  
+  /* Remove hover effects on mobile for better touch experience */
+  .card:hover {
+    transform: none;
+    box-shadow: var(--shadow-subtle);
+  }
+  
+  .summarizeButton:hover {
+    transform: none;
+    background-color: rgba(0, 122, 255, 0.1);
+  }
+}
+
+/* Small mobile adjustments */
+@media (max-width: 480px) {
+  .card {
+    padding: var(--spacing-sm);
+  }
+  
+  .repositoryName {
+    font-size: 0.95rem;
+  }
+  
+  .description {
+    font-size: 0.85rem;
+    -webkit-line-clamp: 4; /* Allow more lines on small screens */
+    line-clamp: 4; /* Standard property for compatibility */
+  }
+  
+  .metadata {
+    font-size: 0.8rem;
+  }
+  
+  .topics {
+    gap: 4px;
+  }
+  
+  .topic {
+    font-size: 0.7rem;
+    padding: 1px 6px;
+  }
+}
